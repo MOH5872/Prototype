@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Place - صفحة الدفع</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #05070a; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #ffffff; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { width: 500px; background: #0d1117; border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7); border: 1px solid rgba(255, 255, 255, 0.05); }
+        h2 { font-size: 26px; margin-bottom: 20px; text-align: center; }
+        .summary { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 15px; border-radius: 8px; margin-bottom: 25px; font-size: 16px; color: #94a3b8; display: flex; justify-content: space-between; }
+        .summary span { color: #818cf8; font-weight: bold; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-size: 14px; color: #94a3b8; }
+        input { width: 100%; padding: 12px; background: #161b22; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 6px; color: #fff; font-size: 16px; }
+        input:focus { outline: none; border-color: #818cf8; }
+        .btn-pay { width: 100%; background: #6366f1; color: #fff; border: none; padding: 14px; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 16px; transition: background 0.2s; }
+        .btn-pay:hover { background: #4f46e5; }
+        .back-link { display: block; text-align: center; margin-top: 15px; color: #94a3b8; text-decoration: none; font-size: 14px; }
+        .back-link:hover { color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>إتمام عملية الدفع</h2>
+        <div class="summary">
+            <div>المبلغ المطلوب:</div>
+            <div id="price-display"><span>0 ج.م</span></div>
+        </div>
+        <form onsubmit="event.preventDefault(); alert('تمت عملية الدفع بنجاح عبر منصة One Place!');">
+            <div class="form-group">
+                <label>اسم البطاقة (Cardholder Name)</label>
+                <input type="text" placeholder="الاسم مكتوب كما هو على البطاقة" required>
+            </div>
+            <div class="form-group">
+                <label>رقم البطاقة (Card Number)</label>
+                <input type="text" placeholder="XXXX XXXX XXXX XXXX" maxlength="16" required>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <div class="form-group" style="flex: 1;">
+                    <label>تاريخ الانتهاء</label>
+                    <input type="text" placeholder="MM/YY" required>
+                </div>
+                <div class="form-group" style="flex: 1;">
+                    <label>رمز الأمان (CVV)</label>
+                    <input type="password" placeholder="123" maxlength="3" required>
+                </div>
+            </div>
+            <button type="submit" class="btn-pay">ادفع الآن</button>
+        </form>
+        <a href="services.html" class="back-link">العودة لتعديل الخدمة</a>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const price = urlParams.get('price');
+        if (price) {
+            document.getElementById('price-display').innerHTML = `<span>${price} ج.م</span>`;
+        }
+    </script>
+</body>
+</html>

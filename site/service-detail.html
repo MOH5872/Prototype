@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Place - تفاصيل الخدمة</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #05070a; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #ffffff; padding: 20px; min-height: 100vh; }
+        .wrapper { max-width: 1000px; margin: 0 auto; }
+        
+        .navbar { display: flex; justify-content: space-between; align-items: center; background: #0d1117; border: 1px solid rgba(255, 255, 255, 0.05); padding: 15px 30px; border-radius: 12px; margin-bottom: 30px; }
+        .logo-text { font-size: 20px; font-weight: bold; color: #fff; text-decoration: none; }
+        .logo-text span { color: #818cf8; }
+        .btn-nav { background: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.2); padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 14px; transition: 0.2s; }
+        .btn-nav:hover { background: rgba(239, 68, 68, 0.2); }
+
+        .container { width: 100%; background: #0d1117; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 50px; box-shadow: 0 25px 50px rgba(0,0,0,0.7); }
+        .back-link { display: inline-block; margin-bottom: 25px; color: #94a3b8; text-decoration: none; font-size: 14px; }
+        .back-link:hover { color: #fff; }
+        
+        h1 { font-size: 32px; margin-bottom: 15px; color: #fff; }
+        h1 span { color: #818cf8; }
+        .desc { font-size: 16px; color: #94a3b8; margin-bottom: 30px; line-height: 1.6; }
+        
+        .section-title { font-size: 20px; margin-bottom: 15px; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; }
+        .details-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 25px; border-radius: 12px; margin-bottom: 30px; }
+        .details-list { list-style: none; }
+        .details-list li { font-size: 15px; color: #cbd5e1; margin-bottom: 12px; display: flex; align-items: flex-start; line-height: 1.5; }
+        .details-list li::before { content: "✔"; color: #818cf8; margin-left: 12px; font-weight: bold; }
+        
+        .footer-action { display: flex; justify-content: space-between; align-items: center; background: rgba(99, 102, 241, 0.05); border: 1px solid rgba(99, 102, 241, 0.2); padding: 20px 30px; border-radius: 12px; }
+        .price-tag { font-size: 24px; font-weight: bold; color: #818cf8; }
+        .btn-proceed { background: #6366f1; color: #fff; padding: 14px 35px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; transition: background 0.2s; }
+        .btn-proceed:hover { background: #4f46e5; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="navbar">
+            <a href="services.html" class="logo-text">One <span>Place</span></a>
+            <a href="index.html" class="btn-nav">تسجيل الخروج</a>
+        </nav>
+
+        <div class="container">
+            <a href="services.html" class="back-link">← العودة لقائمة الخدمات</a>
+            
+            <div id="service-content">
+                <!-- تعبئة البيانات ديناميكياً -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const servicesData = {
+            academic: {
+                title: "الباقة الأكاديمية والشيتات",
+                description: "توفر لك هذه الباقة كل ما تحتاجه لمتابعة المواد الدراسية في جامعتك الخاصة بدون عناء البحث.",
+                features: ["ملخصات وشيتات معتمدة ومحدثة.", "شروحات مبسطة لحل الواجبات.", "بنك أسئلة متكامل للامتحانات السابقة (Midterms & Finals).", "مجموعات دراسية تفاعلية."],
+                price: "150 ج.م", priceVal: "150"
+            },
+            housing: {
+                title: "السكن الطلبي والمواصلات",
+                description: "حلول مريحة وآمنة للسكن بالقرب من الجامعات الخاصة ووسائل نقل جماعي.",
+                features: ["شقق سكنية مشتركة ومفروشة للطلاب.", "خدمة Carpooling لمشاركة المواصلات.", "اشتراكات باصات خاصة وآمنة."],
+                price: "300 ج.م", priceVal: "300"
+            },
+            internship: {
+                title: "التدريب المهني (Internships)",
+                description: "نساعدك في بناء سيرة ذاتية قوية وربطك بالشركات الكبرى.",
+                features: ["فرص تدريب صيفية في شركات كبرى.", "وظائف جزئية (Part-time) مرنة.", "مراجعة وتعديل السيرة الذاتية (CV Review)."],
+                price: "200 ج.م", priceVal: "200"
+            },
+            marketplace: {
+                title: "سوق المستلزمات والكتب المستعملة",
+                description: "منصة آمنة لبيع وشراء الكتب والأدوات بين طلاب نفس الجامعة.",
+                features: ["شراء كتب بحالة ممتازة وبأسعار رمزية.", "بيع أدواتك القديمة واسترداد تكلفتها.", "توفير أدوات الرسم والأجهزة بخصومات."],
+                price: "50 ج.م", priceVal: "50"
+            },
+            advising: {
+                title: "الإرشاد الأكاديمي وتخطيط المواد",
+                description: "استشارات دقيقة لاختيار المواد وتوزيعها لتجنب ضغط الامتحانات.",
+                features: ["مساعدة في اختيار المواد (GPA Booster).", "معرفة تقييمات الدكاترة.", "تخطيط كامل للمسار الدراسي حتى التخرج."],
+                price: "100 ج.م", priceVal: "100"
+            },
+            events: {
+                title: "الأنشطة والفعاليات الجامعية",
+                description: "تابع كل ما يدور في جامعتك والجامعات الأخرى من مؤتمرات وترفيه.",
+                features: ["حجز تذاكر رحلات ومؤتمرات اتحاد الطلاب.", "متابعة المسابقات والهاكاثونات.", "خصومات حصرية على المطاعم والكافيهات."],
+                price: "مجاناً", priceVal: "0"
+            },
+            projects: {
+                title: "مشاريع التخرج والدعم التقني",
+                description: "استشارات هندسية وبرمجية متكاملة لمساعدتك في إنجاز مشروع تخرجك.",
+                features: ["مراجعة وتصحيح الأكواد البرمجية.", "استشارات في اختيار أفكار مشاريع مبتكرة.", "توجيه تقني من خبراء متخصصين."],
+                price: "250 ج.م", priceVal: "250"
+            },
+            legal: {
+                title: "الخدمات الإدارية والقانونية",
+                description: "استشارات ودعم قانوني وإداري لكل ما يخص العقود والتعاملات الطلابية.",
+                features: ["مراجعة عقود السكن الطلبي.", "المساعدة في حل النزاعات الإدارية داخل الجامعة.", "استشارات قانونية مبسطة للطلاب."],
+                price: "120 ج.م", priceVal: "120"
+            },
+            health: {
+                title: "الصحة النفسية وبرامج اللياقة",
+                description: "اهتم بصحتك النفسية والجسدية وسط ضغوط الدراسة والامتحانات.",
+                features: ["جلسات استشارية لدعم الصحة النفسية وتنظيم الوقت.",
+                "برامج رياضية وغذائية مخصصة للطلاب.", "نصائح للتغلب على التوتر والقلق."],
+                price: "80 ج.م", priceVal: "80"
+            }
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const serviceId = urlParams.get('id');
+        const container = document.getElementById('service-content');
+
+        if (serviceId && servicesData[serviceId]) {
+            const data = servicesData[serviceId];
+            let featuresHtml = data.features.map(f => `<li>${f}</li>`).join('');
+            container.innerHTML = `
+                <h1>تفاصيل خدمة: <span>${data.title}</span></h1>
+                <p class="desc">${data.description}</p>
+                <div class="section-title">ماذا تتضمن هذه الخدمة بالتحديد؟</div>
+                <div class="details-box"><ul class="details-list">${featuresHtml}</ul></div>
+                <div class="footer-action">
+                    <div>
+                        <div style="font-size: 13px; color: #94a3b8; margin-bottom: 4px;">تكلفة الاشتراك بالخدمة</div>
+                        <div class="price-tag">${data.price}</div>
+                    </div>
+                    <a href="payment.html?service=${serviceId}&price=${data.priceVal}" class="btn-proceed">الانتقال لصفحة الدفع ←</a>
+                </div>
+            `;
+        } else {
+            container.innerHTML = `<h1>عذراً، هذه الخدمة غير متوفرة.</h1><p class="desc">الرجاء العودة لقائمة الخدمات.</p>`;
+        }
+    </script>
+</body>
+</html>

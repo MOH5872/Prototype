@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Place - الخدمات الشاملة</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #05070a; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #ffffff; padding: 20px; min-height: 100vh; padding-bottom: 120px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .navbar { display: flex; justify-content: space-between; align-items: center; background: #0d1117; border: 1px solid rgba(255, 255, 255, 0.05); padding: 15px 30px; border-radius: 12px; margin-bottom: 40px; }
+        .logo-text { font-size: 20px; font-weight: bold; color: #fff; text-decoration: none; }
+        .logo-text span { color: #818cf8; }
+        .btn-nav { background: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.2); padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 14px; transition: 0.2s; }
+        .btn-nav:hover { background: rgba(239, 68, 68, 0.2); }
+
+        header { text-align: center; margin-bottom: 40px; }
+        h2 { font-size: 36px; margin-bottom: 10px; }
+        h2 span { color: #818cf8; }
+        p.subtitle { color: #94a3b8; font-size: 16px; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; }
+        .card { background: #0d1117; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s, border-color 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .card:hover { transform: translateY(-5px); border-color: #818cf8; }
+        
+        .card-header { display: flex; align-items: center; margin-bottom: 15px; }
+        .icon { font-size: 28px; margin-left: 15px; background: rgba(99, 102, 241, 0.1); padding: 12px; border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.3); }
+        .card h3 { font-size: 20px; color: #fff; }
+        .card p { font-size: 14px; color: #94a3b8; margin-bottom: 20px; line-height: 1.6; }
+        
+        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 20px; }
+        .price { font-size: 18px; font-weight: 700; color: #818cf8; }
+        
+        .btn-actions { display: flex; gap: 10px; }
+        .btn-details { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid rgba(255, 255, 255, 0.1); padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; text-decoration: none; transition: 0.2s; }
+        .btn-details:hover { background: rgba(255, 255, 255, 0.1); }
+        
+        .btn-cart { background: #6366f1; color: #fff; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 13px; transition: background 0.2s; }
+        .btn-cart:hover { background: #4f46e5; }
+        .btn-cart.added { background: #10b981; }
+
+        /* شريط السلة العائم أسفل الشاشة */
+        .cart-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #0d1117; border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 -10px 30px rgba(0,0,0,0.8); z-index: 1000; backdrop-filter: blur(10px); }
+        .cart-info { font-size: 16px; color: #94a3b8; }
+        .cart-info span { color: #818cf8; font-weight: bold; }
+        .btn-checkout { background: #10b981; color: #fff; border: none; padding: 12px 30px; border-radius: 8px; font-weight: bold; font-size: 16px; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+        .btn-checkout:hover { background: #059669; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <a href="services.html" class="logo-text">One <span>Place</span></a>
+            <a href="index.html" class="btn-nav">تسجيل الخروج</a>
+        </nav>
+
+        <header>
+            <h2>باقات وخدمات <span>One Place</span> الشاملة</h2>
+            <p class="subtitle">اختر خدمات متعددة وأضفها لسلتك لإتمام الاشتراك دفعة واحدة.</p>
+        </header>
+
+        <div class="grid" id="services-grid">
+            <!-- سيتم توليد البطاقات برمجياً لتسهيل إدارة السلة -->
+        </div>
+    </div>
+
+    <!-- شريط السلة العائم -->
+    <div class="cart-bar">
+        <div class="cart-info">
+            الخدمات المختارة: <span id="cart-count">0</span> خدمة | الإجمالي: <span id="cart-total">0</span> ج.م
+        </div>
+        <button onclick="goToCheckout()" class="btn-checkout" id="checkout-btn" style="opacity: 0.5; pointer-events: none;">إتمام الدفع للسلة ←</button>
+    </div>
+
+    <script>
+        const servicesData = [
+            { id: 'academic', title: 'الباقة الأكاديمية والشيتات', price: 150, icon: '📚', desc: 'ملخصات معتمدة، بنوك أسئلة، ومتابعة دقيقة للمواد.' },
+            { id: 'housing', title: 'السكن الطلبي والمواصلات', price: 300, icon: '🏠', desc: 'شقق مفروشة آمنة وخدمة مشاركة المواصلات.' },
+            { id: 'internship', title: 'التدريب المهني (Internships)', price: 200, icon: '💼', desc: 'ربطك بالشركات الكبرى لفرص الصيف ووظائف جزئية.' },
+            { id: 'marketplace', title: 'سوق المستلزمات والكتب', price: 50, icon: '🛒', desc: 'بيع واشترِ الكتب والأدوات من زملائك.' },
+            { id: 'advising', title: 'الإرشاد الأكاديمي', price: 100, icon: '🎯', desc: 'مساعدة في اختيار المواد (GPA Booster) وتخطيط التخرج.' },
+            { id: 'events', title: 'الأنشطة والفعاليات', price: 0, icon: '🎉', desc: 'حجز تذاكر المؤتمرات والرحلات وخصومات الكافيهات.' },
+            { id: 'projects', title: 'مشاريع التخرج والدعم التقني', price: 250, icon: '💻', desc: 'استشارات هندسية وتصحيح الأكواد ومشاريع التخرج.' },
+            { id: 'legal', title: 'الخدمات الإدارية والقانونية', price: 120, icon: '⚖️', desc: 'مراجعة عقود السكن الطلبي والنزاعات الإدارية.' },
+            { id: 'health', title: 'الصحة النفسية وبرامج اللياقة', price: 80, icon: '🧘', desc: 'جلسات استشارية لدعم الصحة النفسية وتنظيم الوقت.' }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('onePlaceCart')) || [];
+
+        function renderServices() {
+            const grid = document.getElementById('services-grid');
+            grid.innerHTML = servicesData.map(s => {
+                const isInCart = cart.some(item => item.id === s.id);
+                return `
+                    <div class="card">
+                        <div>
+                            <div class="card-header"><div class="icon">${s.icon}</div><h3>${s.title}</h3></div>
+                            <p>${s.desc}</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="price">${s.price === 0 ? 'مجاناً' : s.price + ' ج.م'}</div>
+                            <div class="btn-actions">
+                                <a href="service-detail.html?id=${s.id}" class="btn-details">التفاصيل</a>
+                                <button onclick="toggleCart('${s.id}')" class="btn-cart ${isInCart ? 'added' : ''}" id="btn-${s.id}">
+                                    ${isInCart ? 'تمت الإضافة ✓' : '+ أضف للسلة'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            updateCartBar();
+        }
+
+        function toggleCart(id) {
+            const service = servicesData.find(s => s.id === id);
+            const index = cart.findIndex(item => item.id === id);
+            
+            if (index > -1) {
+                cart.splice(index, 1);
+            } else {
+                cart.push(service);
+            }
+            
+            localStorage.setItem('onePlaceCart', JSON.stringify(cart));
+            renderServices();
+        }
+
+        function updateCartBar() {
+            const count = cart.length;
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            
+            document.getElementById('cart-count').innerText = count;
+            document.getElementById('cart-total').innerText = total;
+            
+            const checkoutBtn = document.getElementById('checkout-btn');
+            if (count > 0) {
+                checkoutBtn.style.opacity = '1';
+                checkoutBtn.style.pointerEvents = 'auto';
+            } else {
+                checkoutBtn.style.opacity = '0.5';
+                checkoutBtn.style.pointerEvents = 'none';
+            }
+        }
+
+        function goToCheckout() {
+            const ids = cart.map(item => item.id).join(',');
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            window.location.href = `payment.html?services=${ids}&price=${total}`;
+        }
+
+        renderServices();
+    </script>
+</body>
+</html>

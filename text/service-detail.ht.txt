@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Place - تفاصيل الخدمة</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #05070a; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #ffffff; padding: 20px; min-height: 100vh; }
+        .wrapper { max-width: 1000px; margin: 0 auto; }
+        
+        /* شريط التنقل العلوي */
+        .navbar { display: flex; justify-content: space-between; align-items: center; background: #0d1117; border: 1px solid rgba(255, 255, 255, 0.05); padding: 15px 30px; border-radius: 12px; margin-bottom: 30px; }
+        .logo-text { font-size: 20px; font-weight: bold; color: #fff; text-decoration: none; }
+        .logo-text span { color: #818cf8; }
+        .nav-links { display: flex; gap: 15px; align-items: center; }
+        .btn-nav { background: rgba(255, 255, 255, 0.05); color: #cbd5e1; border: 1px solid rgba(255, 255, 255, 0.1); padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 14px; transition: 0.2s; }
+        .btn-nav:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+        .btn-logout { background: rgba(239, 68, 68, 0.1); color: #f87171; border-color: rgba(239, 68, 68, 0.2); }
+        .btn-logout:hover { background: rgba(239, 68, 68, 0.2); color: #fca5a5; }
+
+        .container { width: 100%; background: #0d1117; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 50px; box-shadow: 0 25px 50px rgba(0,0,0,0.7); }
+        .back-link { display: inline-block; margin-bottom: 25px; color: #94a3b8; text-decoration: none; font-size: 14px; }
+        .back-link:hover { color: #fff; }
+        
+        h1 { font-size: 32px; margin-bottom: 15px; color: #fff; }
+        h1 span { color: #818cf8; }
+        .desc { font-size: 16px; color: #94a3b8; margin-bottom: 30px; line-height: 1.6; }
+        
+        .section-title { font-size: 20px; margin-bottom: 15px; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; }
+        .details-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 25px; border-radius: 12px; margin-bottom: 30px; }
+        .details-list { list-style: none; }
+        .details-list li { font-size: 15px; color: #cbd5e1; margin-bottom: 12px; display: flex; align-items: flex-start; line-height: 1.5; }
+        .details-list li::before { content: "✔"; color: #818cf8; margin-left: 12px; font-weight: bold; }
+        
+        .footer-action { display: flex; justify-content: space-between; align-items: center; background: rgba(99, 102, 241, 0.05); border: 1px solid rgba(99, 102, 241, 0.2); padding: 20px 30px; border-radius: 12px; }
+        .price-tag { font-size: 24px; font-weight: bold; color: #818cf8; }
+        .btn-proceed { background: #6366f1; color: #fff; padding: 14px 35px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; transition: background 0.2s; }
+        .btn-proceed:hover { background: #4f46e5; }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- شريط التنقل العلوي -->
+        <nav class="navbar">
+            <a href="index.html" class="logo-text">One <span>Place</span></a>
+            <div class="nav-links">
+                <a href="services.html" class="btn-nav">الخدمات</a>
+                <a href="login.html" class="btn-nav btn-logout">تسجيل الخروج</a>
+            </div>
+        </nav>
+
+        <div class="container">
+            <a href="services.html" class="back-link">← العودة لقائمة الخدمات</a>
+            
+            <div id="service-content">
+                <!-- يتم تعبئة البيانات هنا ديناميكياً -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const servicesData = {
+            academic: {
+                title: "الباقة الأكاديمية والشيتات",
+                subtitle: "الحل النهائي لتخفيف ضغط المحاضرات والامتياز في المواد.",
+                description: "توفر لك هذه الباقة كل ما تحتاجه تخصصياً لمتابعة المواد الدراسية في جامعتك الخاصة بدون عناء البحث في الجروبات العشوائية.",
+                features: [
+                    "الحصول على ملخصات وشيتات معتمدة ومحدثة لكل مادة دراسية.",
+                    "شروحات مبسطة لحل الواجبات والمسائل الصعبة.",
+                    "بنك أسئلة متكامل لامتحانات الأعوام السابقة (Midterms & Finals) مع الحلول النموذجية.",
+                    "مجموعات دراسية تفاعلية مع زملاء نفس التخصص."
+                ],
+                price: "150 ج.م",
+                priceVal: "150"
+            },
+            housing: {
+                title: "السكن الطلبي والمواصلات",
+                subtitle: "أمان وراحة تامة لرحلتك اليومية للجامعة.",
+                description: "إذا كنت مغترباً أو تبحث عن طريقة أسهل وأكثر أماناً للوصول للجامعة والرجوع منها، هذه الباقة مصممة خصيصاً لك.",
+                features: [
+                    "حجز شقق سكنية مشتركة ومفروشة بالكامل ومجهزة خصيصاً للطلاب قرب الجامعة.",
+                    "خدمة Carpooling ذكية لمشاركة المواصلات مع زملاء نفس الجامعة وبأسعار اقتصادية.",
+                    "اشتراكات باصات خاصة وآمنة بخطوط سير دقيقة ومواعيد ثابتة.",
+                    "دعم وضمان لحقوق السكن والعقود الطلابية."
+                ],
+                price: "300 ج.م",
+                priceVal: "300"
+            },
+            internship: {
+                title: "التدريب المهني (Internships)",
+                subtitle: "ابدأ مستقبلك المهني قبل التخرج.",
+                description: "نساعدك في بناء سيرة ذاتية قوية وربطك مباشرة بالشركات الكبرى التي تبحث عن عقول واعدة من طلاب الجامعات الخاصة.",
+                features: [
+                    "ربط مباشر مع فرص التدريب الصيفية (Summer Internships) في كبرى الشركات.",
+                    "توفير وظائف جزئية (Part-time jobs) تتناسب تماماً مع جدولك الدراسي وأيام المحاضرات.",
+                    "خدمة احترافية لمراجعة وتعديل السيرة الذاتية (CV Review) ومحاكاة مقابلات العمل.",
+                    "إرشادات لتطوير المهارات التقنية والشخصية المطلوبة في سوق العمل."
+                ],
+                price: "200 ج.م",
+                priceVal: "200"
+            },
+            marketplace: {
+                title: "سوق المستلزمات والكتب المستعملة",
+                subtitle: "وفر أموالك وتخلص من حاجياتك القديمة بسهولة.",
+                description: "منصة آمنة وموثوقة لبيع وشراء الكتب والأدوات الدراسية بين طلاب نفس الجامعة بأفضل الأسعار.",
+                features: [
+                    "إمكانية شراء الكتب الدراسية بحالة ممتازة وبأسعار رمزية من طلاب السنوات السابقة.",
+                    "بيع أدواتك وكتبك القديمة واسترداد جزء من تكلفتها.",
+                    "توفير أدوات الرسم الهندسي، الأجهزة الطبية، والمستلزمات الخاصة بخصومات طلابية.",
+                    "ضمان سلامة المعاملات المالية واستلام المنتجات داخل الحرم الجامعي."
+                ],
+                price: "50 ج.م",
+                priceVal: "50"
+            },
+            advising: {
+                title: "الإرشاد الأكاديمي وتخطيط المواد",
+                subtitle: "خطط لـ GPA عالي وتجنب عثرات التسجيل.",
+                description: "التشتت في اختيار المواد والدكاترة قد يؤثر على مستقبلك؛ نوفر لك استشارات دقيقة ومجربة.",
+                features: [
+                    "مساعدة ذكية في اختيار المواد وتوزيعها لتجنب ضغط الامتحانات (GPA Booster).",
+                    "معرفة تقييمات الدكاترة ومحتوى المواد بناءً على تجارب الطلاب السابقين.",
+                    "جلسات توجيه فردية لتخفيف ضغوط الدراسة وتنظيم الوقت.",
+                    "تخطيط كامل للمسار الدراسي من السنة الأولى حتى التخرج."
+                ],
+                price: "100 ج.م",
+                priceVal: "100"
+            },
+            events: {
+                title: "الأنشطة والفعاليات الجامعية",
+                subtitle: "عش تجربة الحياة الجامعية بكامل تفاصيلها.",
+                description: "لا تفوت أي فعالية أو رحلة أو مؤتمر تقيمه جامعتك أو الجامعات الخاصة الأخرى.",
+                features: [
+                    "حجز تذاكر رحلات ومؤتمرات اتحاد الطلاب وأسرة الجامعة بضغطة زر.",
+                    "متابعة مواعيد المسابقات، الهاكاثونات (Hackathons)، والفعاليات الترفيهية.",
+                    "الحصول على خصومات حصرية وكوبونات للمطاعم والكافيهات القريبة من الجامعات.",
+                    "تكوين شبكة علاقات واسعة مع طلاب الجامعات الخاصة الأخرى."
+                ],
+                price: "مجاناً",
+                priceVal: "0"
+            }
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const serviceId = urlParams.get('id');
+        const container = document.getElementById('service-content');
+
+        if (serviceId && servicesData[serviceId]) {
+            const data = servicesData[serviceId];
+            let featuresHtml = data.features.map(f => `<li>${f}</li>`).join('');
+            
+            container.innerHTML = `
+                <h1>تفاصيل خدمة: <span>${data.title}</span></h1>
+                <p class="desc">${data.description}</p>
+                
+                <div class="section-title">ماذا تتضمن هذه الخدمة بالتحديد؟</div>
+                <div class="details-box">
+                    <ul class="details-list">
+                        ${featuresHtml}
+                    </ul>
+                </div>
+
+                <div class="footer-action">
+                    <div>
+                        <div style="font-size: 13px; color: #94a3b8; margin-bottom: 4px;">تكلفة الاشتراك بالخدمة</div>
+                        <div class="price-tag">${data.price}</div>
+                    </div>
+                    <a href="payment.html?service=${serviceId}&price=${data.priceVal}" class="btn-proceed">الانتقال لصفحة الدفع ←</a>
+                </div>
+            `;
+        } else {
+            container.innerHTML = `<h1>عذراً، هذه الخدمة غير متوفرة أو لم يتم اختيارها بدقة.</h1><p class="desc">الرجاء العودة لقائمة الخدمات والاختيار مجدداً.</p>`;
+        }
+    </script>
+</body>
+</html>

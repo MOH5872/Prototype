@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Place - لوحة التحكم</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #05070a; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #ffffff; padding: 20px; min-height: 100vh; }
+        .container { max-width: 1000px; margin: 40px auto; background: #0d1117; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; padding: 40px; box-shadow: 0 25px 50px rgba(0,0,0,0.7); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 20px; }
+        h1 { font-size: 28px; }
+        h1 span { color: #818cf8; }
+        .btn-back { background: rgba(255,255,255,0.05); color: #fff; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-size: 14px; border: 1px solid rgba(255,255,255,0.1); }
+        
+        .order-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .order-info h3 { font-size: 18px; margin-bottom: 5px; color: #fff; }
+        .order-info p { font-size: 13px; color: #94a3b8; }
+        .badge-status { background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.2); padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <h1>مرحباً بك في لوحة <span>تحكم الطالب</span></h1>
+            <a href="services.html" class="btn-back">العودة للخدمات</a>
+        </div>
+
+        <h3 style="margin-bottom: 20px; font-size: 18px; color: #94a3b8;">الخدمات المشترك بها حالياً:</h3>
+        
+        <div class="order-card">
+            <div class="order-info">
+                <h3>الباقة الأكاديمية والشيتات</h3>
+                <p>تاريخ الاشتراك: أغسطس 2026 | رقم الطلب: #OP-9482</p>
+            </div>
+            <div class="badge-status">نشط وجاري المتابعة</div>
+        </div>
+
+        <div class="order-card">
+            <div class="order-info">
+                <h3>السكن الطلبي والمواصلات</h3>
+                <p>تاريخ الاشتراك: أغسطس 2026 | رقم الطلب: #OP-9483</p>
+            </div>
+            <div class="badge-status">تم التأكيد</div>
+        </div>
+    </div>
+</body>
+</html>
